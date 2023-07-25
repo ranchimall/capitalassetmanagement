@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Certifier Company</title>
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body data-theme="dark">
+    <header>
+        <h4 id="company_title">
+            <img src="assets/icon.svg" alt="">
+            Capital Asset Management
+        </h4>
+    </header>
+    <section id="hero_section" class="fancy-border fancy-border--bottom">
+        <h1>Company main objective or
+            something important</h1>
+    </section>
+    <section>
+        <div class="grid section-title">
+            <h4 class="reveal">
+                <span>
+                    Token
+                </span>
+            </h4>
+            <h3 class="reveal">
+                <span>
+                    Structuring
+                </span>
+            </h3>
+        </div>
+    </section>
+    <section>
+        <div class="grid section-title">
+            <h4 class="reveal">
+                <span>
+                    Periodic
+                </span>
+            </h4>
+            <h3 class="reveal">
+                <span>
+                    legal services
+                </span>
+            </h3>
+        </div>
+    </section>
+    <section id="">
+        <h3 class="section-title reveal">
+            <span>
+                Methodology
+            </span>
+        </h3>
+        <ul id="methodology_list" class="fancy-list"> </ul>
+    </section>
+    <section id="team_section">
+        <h3 class="section-title reveal">
+            <span>
+                Team
+            </span>
+        </h3>
+        <ul id="team_members" class="move-in"></ul>
+    </section>
+    <dialog id="person_bio">
+        <button onclick="closePersonBio()">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                fill="#000000">
+                <path d="M0 0h24v24H0V0z" fill="none" />
+                <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+            </svg>
+        </button>
+        <div id="person_bio_wrapper">
+            <img src="" alt="" id="person__image">
+            <h3 id="person__name"></h3>
+            <p id="person__title"></p>
+            <p id="person__bio"></p>
+        </div>
+    </dialog>
+    <script>
+        const teamMembers = [
+            {
+                name: 'Silvia Aguilar',
+                title: 'External assessor',
+                image: 'assets/craig-mckay-jmURdhtm7Ng-unsplash.jpg',
+                bio: `
+                    Silvia Melisa Aguilar Cruz is an attorney from El Salvador. She holds a Bachelor's degree in Juridical Sciences from the University Doctor José Matías Delgado. Silvia has experience working in various legal roles:
+                    \n\nLegal Collaborator at Asesores Corporativos (July 2017 - August 2018) - She dealt with notarial document preparation, including sworn declarations, permits, and property transactions. She also handled institutional permits and processes with the National Medicines Institution.
+                    \n\nIndependent Legal Consultant at Lans Despacho de Abogados (August 2018 - January 2020) - Her responsibilities included municipal permits, National Registry procedures, corporate legal advice, and managing legal books and acts.
+                    \n\nLegal Manager at Grupo Piramide (August 2018 - April 2022) - Silvia was in charge of ensuring legal compliance for a group of companies in El Salvador, Guatemala, and Panama. She provided internal legal advice and managed institutional procedures.
+                    \n\nIndependent Legal Consultant at Monroy & Asociados (July 2019 - April 2022) - Her expertise included legal advice for banking and tax procedures.
+                    \n\nCurrent position as Legal Manager at Monroy & Asociados (April 2022 - Present) - Her current responsibilities involve legal compliance for an accounting and auditing firm, handling institutional procedures, and providing legal advice on tax and banking matters.
+                    \n\nSilvia has attended various training courses and has received certifications related to financial and legal aspects, including Anti-Money Laundering, Corporate Finance, and Compliance. She has been involved in Capacitadora American College, APAC Accounting classes, Capacitadora Multi Inversiones, Capacitadora Pro-Calidad, and other specialized courses.
+                    `
+            },
+            {
+                name: 'Oscar Monroy',
+                title: 'External assessor',
+                image: 'assets/a.jpg',
+                bio: `
+                    Oscar René Monroy Sánchez is a highly accomplished professional with expertise in Information Management, Finance, and Economics. He holds a Bachelor's degree in Gerencia Informatica and a Master's degree in Business Administration with a focus on Finances. 
+                    \n\nCurrently pursuing a Doctorate in Economics, Oscar has a strong academic background. With extensive experience as a Director Executive and Manager of Consultancies, he brings valuable leadership skills to the table. Oscar is also a certified expert trainer in Finance and Auditing, making him a valuable asset in any organization.
+                `
+            },
+        ]
+
+
+        const render = {
+            teamMember(details, index) {
+                const { image, name, title } = details
+                const memberItem = document.createElement('li')
+                memberItem.classList.add('team-member')
+                memberItem.setAttribute('data-index', index)
+                memberItem.innerHTML = `
+                    <div class="team-member__image-container">
+                        <img src="${image}" alt="${name} profile picture" loading="lazy">
+                    </div>
+                    <p class="team-member__name">${name},</p>
+                    <p class="team-member__title">${title}</p>
+                    <span class="team-member__button">Learn more</span>
+                `
+                return memberItem
+            },
+            fancyListItem(details, index) {
+                const { label, title, description } = details
+                const listItem = document.createElement('li')
+                listItem.classList.add('fancy-list__item')
+                listItem.innerHTML = `
+                    <div class="fancy-list__item__label-wrapper">
+                        <span class="fancy-list__item__label">${label || index + 1}</span>
+                    </div>
+                    ${title ? `<h4 class="fancy-list__item__title">${title}</h4>` : ''}
+                    ${description ? `<p class="fancy-list__item__description">${description}</p>` : ''}
+                `
+                return listItem
+            }
+        }
+
+        window.onload = () => {
+            const teamMembersList = document.getElementById('team_members')
+            teamMembers.sort((a, b) => a.name.localeCompare(b.name))
+            teamMembers.forEach((member, index) => {
+                const memberItem = render.teamMember(member, index)
+                teamMembersList.appendChild(memberItem)
+            })
+            document.getElementById('team_members').addEventListener('click', e => {
+                const index = e.target.closest('li').dataset.index
+                const { image, name, title, bio } = teamMembers[index]
+                document.getElementById('person__image').src = image
+                document.getElementById('person__name').textContent = name
+                document.getElementById('person__title').textContent = title
+                document.getElementById('person__bio').innerText = bio
+                document.getElementById('person_bio').showModal()
+                document.body.style.overflow = 'hidden';
+                document.body.style.top = `-${window.scrollY}px`;
+            })
+            dataLists.forEach(list => {
+                const { target, list: items } = list
+                const listContainer = document.getElementById(target)
+                if (!listContainer) return console.error(`No element found with id ${target}`)
+                items.forEach((item, index) => {
+                    const listItem = render.fancyListItem(item, index)
+                    listContainer.appendChild(listItem)
+                })
+            })
+            const headingObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.firstElementChild.animate([
+                            {
+                                transform: 'translateY(0.5em)',
+                                opacity: 0
+                            },
+                            {
+                                transform: 'none',
+                                opacity: 1
+                            },
+                        ], {
+                            duration: 300,
+                            easing: 'ease',
+                            fill: 'forwards',
+                            delay: 100
+                        })
+                        observer.unobserve(entry.target)
+                    }
+                })
+            }, {
+                threshold: 0.8
+            })
+
+            document.querySelectorAll('.reveal').forEach(heading => {
+                headingObserver.observe(heading)
+            })
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.animate([
+                            {
+                                transform: 'translateX(-0.5em)',
+                                opacity: 0
+                            },
+                            {
+                                transform: 'none',
+                                opacity: 1
+                            },
+                        ], {
+                            duration: 300,
+                            easing: 'ease',
+                            fill: 'forwards',
+                            delay: 100
+                        })
+                        observer.unobserve(entry.target)
+                    }
+                })
+            }, {
+                threshold: 0.1
+            })
+
+            document.querySelectorAll('.move-in').forEach(section => {
+                sectionObserver.observe(section)
+            })
+        }
+        function closePersonBio() {
+            const scrollY = document.body.style.top;
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            document.body.style.overflow = '';
+            document.body.style.top = 'initial';
+            document.getElementById('person_bio').animate([
+                {
+                    opacity: 1,
+                    transform: 'scale(1)'
+                },
+                {
+                    opacity: 0,
+                    transform: 'scale(1.1)'
+                }
+            ], {
+                duration: 100,
+                easing: 'ease',
+            }).finished.then(animation => {
+                animation.commitStyles();
+                document.getElementById('person_bio').close()
+            })
+        }
+
+        const dataLists = [
+            {
+                target: 'methodology_list',
+                list: [
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                    {
+                        title: 'Title',
+                        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+                    },
+                ]
+            }
+        ]
+
+
+    </script>
+</body>
+
+</html>
